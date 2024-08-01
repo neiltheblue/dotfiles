@@ -5,6 +5,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+#start ssh-agent (the systemd user servivce does not seem to work)
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+ssh-add ~/.ssh/default
+
 # yazi short command
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -33,8 +38,10 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
-# start ssh-agent
-eval $(ssh-agent)
-
+# start neofetch on login
 neofetch
+
+# run vi edit mode
+set -o vi
+
 
