@@ -24,8 +24,9 @@ function yy() {
 eval "$(fzf --bash)"
 alias fzf="fzf --preview=\"bat --color=always {}\"" 
 
-# set default editor
+# set neovim editor
 export EDITOR=nvim
+export NVIM_APPNAME=nvim-default
 
 # add local bin to path
 export PATH=~/bin:$PATH
@@ -34,5 +35,18 @@ export PATH=~/bin:$PATH
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
+# source rust support
+. "$HOME/.cargo/env"
+
+# perl config
+PATH="/home/neil/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/neil/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/neil/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/neil/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/neil/perl5"; export PERL_MM_OPT;
+
+# include bash login setttings
 . ~/.bash_login
+
+
 

@@ -12,3 +12,4 @@ set -o vi
 neofetch
 
 
+. "$HOME/.cargo/env"

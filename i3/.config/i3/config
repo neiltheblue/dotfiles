@@ -265,4 +265,6 @@ client.urgent            $peach    $base  $peach   $overlay0  $peach
 client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
 client.background        $base
 
-
+exec --no-startup-id i3-msg 'workspace 1; exec google-chrome-stable'
+exec --no-startup-id i3-msg 'workspace 2; exec kitty'
+exec --no-startup-id i3-msg 'workspace 2; exec firefox'
