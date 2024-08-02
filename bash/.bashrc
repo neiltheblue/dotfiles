@@ -6,9 +6,9 @@
 [[ $- != *i* ]] && return
 
 #start ssh-agent (the systemd user servivce does not seem to work)
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-ssh-add ~/.ssh/default
+eval "$(ssh-agent -s)" >/dev/null
+ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1
+ssh-add ~/.ssh/default >/dev/null 2>&1
 
 # yazi short command
 function yy() {
@@ -24,9 +24,6 @@ function yy() {
 eval "$(fzf --bash)"
 alias fzf="fzf --preview=\"bat --color=always {}\"" 
 
-#setup starship
-eval "$(starship init bash)"
-
 # set default editor
 export EDITOR=nvim
 
@@ -36,12 +33,6 @@ export PATH=~/bin:$PATH
 # init command aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
 
-# start neofetch on login
-neofetch
-
-# run vi edit mode
-set -o vi
-
+. ~/.bash_login
 

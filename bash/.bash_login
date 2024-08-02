@@ -1,0 +1,14 @@
+#
+# ~/.bash_login
+#
+
+#setup starship
+eval "$(starship init bash)"
+
+# run vi edit mode
+set -o vi
+
+# start neofetch on login
+neofetch
+
+
