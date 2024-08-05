@@ -186,7 +186,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 #bindsym $mod+Shift+e exit
-bindsym $mod+Shift+e exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+e exec rofi -show power-menu -modi power-menu:rofi-power-menu-blue
 
 #lock the screen
 #bindsym $mod+Control+l exec i3lock -c 000000
@@ -266,6 +266,8 @@ client.urgent            $peach    $base  $peach   $overlay0  $peach
 client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
 client.background        $base
 
-exec --no-startup-id i3-msg 'workspace 1; exec google-chrome-stable'
-exec --no-startup-id i3-msg 'workspace 2; exec kitty'
-exec --no-startup-id i3-msg 'workspace 2; exec firefox'
+#exec --no-startup-id i3-msg 'workspace 1; exec google-chrome-stable'
+#exec --no-startup-id i3-msg 'workspace 2; exec kitty'
+#exec --no-startup-id i3-msg 'workspace 2; exec firefox'
+exec i3-msg 'workspace 2; exec kitty'
+exec i3-msg 'workspace 2; exec firefox'
