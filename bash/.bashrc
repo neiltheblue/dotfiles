@@ -55,5 +55,4 @@ set -o vi
 neofetch
 
 
-.
 
