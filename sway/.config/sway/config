@@ -21,10 +21,12 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | wmenu | xargs swaymsg exec --
+#set $menu dmenu_path | wmenu | xargs swaymsg exec --
+set $menu wofi 
 
 # save the clipboard between windows
-exec wl-paste -t text --watch clipman store --no-persist
+exec_always wl-paste --watch clipman store 
+bindsym $mod+p exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy
 
 #set auto tiling
 exec_always --no-startup-id autotiling
