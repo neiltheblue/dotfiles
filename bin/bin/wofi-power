@@ -10,20 +10,25 @@ case $1 in
   'reboot') systemctl reboot
     ;;
 
- 'lock') swaylock -f -c000000 -i ${HOME}/.config/sway/lock.png
+  'lock') swaylock -f -c000000 -i ${HOME}/.config/sway/lock.png
     ;;
 
- 'suspend') systemctl suspend
+  'logout') swaymsg exit
     ;;
 
- 'hibernate') swaymsg exit
+  'suspend') systemctl suspend
     ;;
 
-  '-a') echo "shutdown" 
-     echo "reboot"
+  'hibernate') systemctl hibernate
+    ;;
+
+  '-a') 
      echo "lock"
+     echo "logout"
+     echo "reboot"
      echo "suspend"
      echo "hibernate"
+     echo "shutdown" 
     ;;
 
   '-show') ${THIS} $(${THIS} -a | /usr/bin/wofi -dw1)
