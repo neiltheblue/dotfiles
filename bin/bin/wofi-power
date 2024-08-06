@@ -23,12 +23,12 @@ case $1 in
     ;;
 
   '-a') 
-     echo "lock"
-     echo "logout"
-     echo "reboot"
-     echo "suspend"
-     echo "hibernate"
-     echo "shutdown" 
+     echo "lock 󰌾"
+     echo "logout 󰍃"
+     echo "reboot 󰜉"
+     echo "suspend 󰒲"
+     echo "hibernate 󰋊"
+     echo "shutdown 󰐥" 
     ;;
 
   '-show') ${THIS} $(${THIS} -a | /usr/bin/wofi -dw1)
