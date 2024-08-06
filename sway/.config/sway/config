@@ -157,7 +157,9 @@ seat seat0 xcursor_theme whiteglass  25
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+#    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+shift+e exec ${HOME}/bin/wofi-power -show
+  
 #
 # Moving around:
 #
@@ -277,19 +279,21 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+# bar {
+#     position top
+#
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+#
+#     colors {
+#         statusline #ffffff
+#         background #323232
+#         inactive_workspace #32323200 #32323200 #5c5c5c
+#     }
+# }
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+exec waybar 
 
 set $rosewater #f5e0dc
 set $flamingo  #f2cdcd

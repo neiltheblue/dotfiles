@@ -1,0 +1,31 @@
+#!/bin/bash
+
+THIS=$0
+
+case $1 in
+
+  'shutdown') systemctl powseroff
+    ;;
+
+  'reboot') systemctl reboot
+    ;;
+
+ 'lock') swaylock -f -c000000 -i ${HOME}/.config/sway/lock.png
+    ;;
+
+ 'suspend') systemctl suspend
+    ;;
+
+ 'hibernate') swaymsg exit
+    ;;
+
+  '-a') echo "shutdown" 
+     echo "reboot"
+     echo "lock"
+     echo "suspend"
+     echo "hibernate"
+    ;;
+
+  '-show') ${THIS} $(${THIS} -a | /usr/bin/wofi -dw1)
+  
+ esac
