@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sed -e 's/Mod4/Mod1/g' ${HOME}/.config/sway/config > /tmp/sway-config
+WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 /usr/bin/sway --config /tmp/sway-config &
+WAYLAND_DISPLAY=wayland-1 /usr/bin/wayvnc
