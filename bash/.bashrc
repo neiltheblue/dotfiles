@@ -45,14 +45,16 @@ PERL_LOCAL_LIB_ROOT="/home/neil/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_RO
 PERL_MB_OPT="--install_base \"/home/neil/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/neil/perl5"; export PERL_MM_OPT;
 
-#setup starship
-eval "$(starship init bash)"
-
 # run vi edit mode
 set -o vi
 
 # start neofetch on login
-neofetch
-
-
-
+TTY=$(echo $(tty) | sed -e '/pts/d')
+if [ -z "${TTY}" ]
+then
+ #setup starship
+ eval "$(starship init bash)"
+ neofetch
+else
+  echo "Welcome to $(hostname)"
+fi

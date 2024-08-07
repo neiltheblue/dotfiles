@@ -1,5 +1,12 @@
 #!/bin/bash
 
 sed -e 's/Mod4/Mod1/g' ${HOME}/.config/sway/config > /tmp/sway-config
-WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 /usr/bin/sway --config /tmp/sway-config &
-WAYLAND_DISPLAY=wayland-1 /usr/bin/wayvnc
+
+cat << EOF >> /tmp/sway-config
+#start vnc
+exec echo "display: $WAYLAND_DISPLAY"
+#exec WAYLAND_DISPLAY=wayland-1 /usr/bin/wayvnc --log-level=trace
+exec WAYLAND_DISPLAY=wayland-1 /usr/bin/wayvnc 
+EOF
+
+WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 /usr/bin/sway --config /tmp/sway-config

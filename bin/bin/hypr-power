@@ -10,10 +10,10 @@ case $1 in
   'reboot') systemctl reboot
     ;;
 
-  'lock') swaylock -f -c000000 -i ${HOME}/.config/sway/lock.png 
+  'lock') hyprlock
     ;;
 
-  'logout') swaymsg exit
+  'logout') hyprctl dispatch exit
     ;;
 
   'suspend') systemctl suspend
