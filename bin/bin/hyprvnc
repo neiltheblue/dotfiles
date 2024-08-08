@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sed \
+  -e 's/ALT/ALTx/g' \
+  -e 's/SUPER/ALT/g' \
+  -e 's/ALTx/SUPER/g' \
+  ${HOME}/.config/hypr/hyprland.conf > /tmp/hypr-config
+
+cat << EOF >> /tmp/hypr-config
+
+#start vnc
+exec = WAYLAND_DISPLAY=wayland-1 /usr/bin/wayvnc 
+EOF
+
+WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 /usr/bin/Hyprland --config /tmp/hypr-config
+
