@@ -13,10 +13,12 @@ return {
   config = function()
     local wk = require("which-key")
     local vimrc = vim.fn.expand("$MYVIMRC")
+    local oil = require("oil")
+    local home = vim.fn.expand("$HOME")
     local MiniMap = require("mini.map")
 
     wk.add({
-      { "<C-n>", "<cmd>Neotree filesystem toggle left<cr>", desc = "Neotree", mode = { "n", "i" } },
+      { "<C-n>",     "<cmd>Neotree filesystem toggle left<cr>", desc = "Neotree", mode = { "n", "i" } },
       { "<leader>b", group = "Buffers" },
       {
         "<leader>b1",
@@ -79,12 +81,6 @@ return {
         mode = "n",
       },
       {
-        "<leader>bf",
-        "<cmd>Telescope find_files<cr>",
-        desc = "Find File",
-        mode = "n",
-      },
-      {
         "<leader>bx",
         "<cmd>BufferClose<cr>",
         desc = "Buffer Close",
@@ -144,17 +140,17 @@ return {
         desc = "Telescope buffers",
         mode = "n",
       },
-      { "<leader>g", group = "Git" },
-      { "<leader>gs", "<cmd>Git<cr>", desc = "Git status", mode = "n" },
-      { "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", desc = "Gitsigns Hunk", mode = "n" },
-      { "<leader>gd", "<cmd>Gvdiffsplit<cr>", desc = "Git diff", mode = "n" },
-      { "<leader>gw", "<cmd>Gwrite<cr>", desc = "Git write", mode = "n" },
-      { "<leader>gr", "<cmd>Gread<cr>", desc = "Git read", mode = "n" },
-      { "<leader>gl", "<cmd>Git log<cr>", desc = "Git log", mode = "n" },
-      { "<leader>gc", "<cmd>Git commit<cr>", desc = "Git commit", mode = "n" },
-      { "<leader>gB", "<cmd>Git blame toggle<cr>", desc = "Git blame toggle", mode = "n" },
-      { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git blame", mode = "n" },
-      { "<leader>c", group = "Code" },
+      { "<leader>g",  group = "Git" },
+      { "<leader>gs", "<cmd>Git<cr>",                   desc = "Git status",       mode = "n" },
+      { "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", desc = "Gitsigns Hunk",    mode = "n" },
+      { "<leader>gd", "<cmd>Gvdiffsplit<cr>",           desc = "Git diff",         mode = "n" },
+      { "<leader>gw", "<cmd>Gwrite<cr>",                desc = "Git write",        mode = "n" },
+      { "<leader>gr", "<cmd>Gread<cr>",                 desc = "Git read",         mode = "n" },
+      { "<leader>gl", "<cmd>Git log<cr>",               desc = "Git log",          mode = "n" },
+      { "<leader>gc", "<cmd>Git commit<cr>",            desc = "Git commit",       mode = "n" },
+      { "<leader>gB", "<cmd>Git blame toggle<cr>",      desc = "Git blame toggle", mode = "n" },
+      { "<leader>gb", "<cmd>Git blame<cr>",             desc = "Git blame",        mode = "n" },
+      { "<leader>c",  group = "Code" },
       {
         "<leader>ca",
         vim.lsp.buf.code_action,
@@ -221,19 +217,19 @@ return {
         desc = "LSP Definitions / references / ... ",
         mode = "n",
       },
-      { "<leader>co", "<cmd>Trouble loclist toggle<cr>", desc = "Location List ", mode = "n" },
-      { "<leader>cq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List ", mode = "n" },
-      { "<leader>cr", "<cmd>Telescope treesitter<cr>", desc = "Telescope Treesitter", mode = "n" },
-      { "<leader>d", group = "Debugger" },
-      { "<leader>dc", "<cmd>DapContinue<cr>", desc = "Continue", mode = "n" },
-      { "<leader>dx", "<cmd>DapTerminate<cr>", desc = "Terminate", mode = "n" },
-      { "<leader>do", "<cmd>DapStepOver<cr>", desc = "Step Over", mode = "n" },
-      { "<leader>di", "<cmd>DapStepInto<cr>", desc = "Step Into", mode = "n" },
-      { "<leader>du", "<cmd>DapStepOut<cr>", desc = "Step Out", mode = "n" },
-      { "<leader>dt", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint", mode = "n" },
-      { "<leader>dr", "<cmd>DapToggleRepl<cr>", desc = "Toggle REPL", mode = "n" },
-      { "<leader>dn", "<cmd>DapNew<cr>", desc = "New", mode = "n" },
-      { "<leader>de", "<cmd>DapEval<cr>", desc = "Eval", mode = "n" },
+      { "<leader>co", "<cmd>Trouble loclist toggle<cr>", desc = "Location List ",       mode = "n" },
+      { "<leader>cq", "<cmd>Trouble qflist toggle<cr>",  desc = "Quickfix List ",       mode = "n" },
+      { "<leader>cr", "<cmd>Telescope treesitter<cr>",   desc = "Telescope Treesitter", mode = "n" },
+      { "<leader>d",  group = "Debugger" },
+      { "<leader>dc", "<cmd>DapContinue<cr>",            desc = "Continue",             mode = "n" },
+      { "<leader>dx", "<cmd>DapTerminate<cr>",           desc = "Terminate",            mode = "n" },
+      { "<leader>do", "<cmd>DapStepOver<cr>",            desc = "Step Over",            mode = "n" },
+      { "<leader>di", "<cmd>DapStepInto<cr>",            desc = "Step Into",            mode = "n" },
+      { "<leader>du", "<cmd>DapStepOut<cr>",             desc = "Step Out",             mode = "n" },
+      { "<leader>dt", "<cmd>DapToggleBreakpoint<cr>",    desc = "Toggle Breakpoint",    mode = "n" },
+      { "<leader>dr", "<cmd>DapToggleRepl<cr>",          desc = "Toggle REPL",          mode = "n" },
+      { "<leader>dn", "<cmd>DapNew<cr>",                 desc = "New",                  mode = "n" },
+      { "<leader>de", "<cmd>DapEval<cr>",                desc = "Eval",                 mode = "n" },
       {
         "<leader>dm",
         function()
@@ -363,15 +359,16 @@ return {
       },
       { "<leader>f", group = "File" },
       {
-        "<leader>fb",
-        "<cmd>Neotree reveal left<cr>",
-        desc = "File Browser",
-        mode = "n",
-      },
-      {
         "<leader>ff",
         "<cmd>Telescope find_files<cr>",
         desc = "Find File",
+        mode = "n",
+      },
+
+      {
+        "<leader>fg",
+        "<cmd>Telescope live_grep<cr>",
+        desc = "Live Grep",
         mode = "n",
       },
       {
@@ -402,19 +399,6 @@ return {
         "<leader>fx",
         "<cmd>q<cr>",
         desc = "Exit",
-        mode = "n",
-      },
-      { "<leader>p", group = "Project" },
-      {
-        "<leader>pb",
-        "<cmd>Neotree reveal_force_cwd left<cr>",
-        desc = "Project Browser",
-        mode = "n",
-      },
-      {
-        "<leader>pg",
-        "<cmd>Telescope live_grep<cr>",
-        desc = "Live Grep",
         mode = "n",
       },
       { "<leader>n", group = "Nvim" },
@@ -449,14 +433,11 @@ return {
         mode = "n",
       },
       {
-        "<leader>nn",
-        "<cmd>Neotree $MYVIMRC toggle left<cr>",
-        desc = "Toggle Config Browser",
-        mode = "n",
-      },
-      {
         "<leader>nh",
-        "<cmd>Neotree dir=$HOME reveal left<cr>",
+        "<cmd>Oil ~/.<cr>",
+        -- function()
+        --   oil.open(home)
+        -- end,
         desc = "Home Browser",
         mode = "n",
       },
